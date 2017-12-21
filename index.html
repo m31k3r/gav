@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Räkna ut genomsnittligt anskaffningsvärde, GAV.</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+    <style>
+    *,
+    *:before,
+    *:after {
+      box-sizing: inherit;
+    }
+
+    html {
+      box-sizing: border-box;
+      font-size: 62.5%;
+    }
+
+    body {
+      color: #222;
+      font-family: Courier, monospace;
+      font-size: 1.6rem;
+      font-weight: 300;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: underline;
+    }
+
+    input {
+      line-height: 1em;
+      max-width: 16rem;
+      border: .1rem solid #222;
+      border-radius: .2rem;
+      padding: .1rem .4rem;
+    }
+
+    .container {
+      margin: auto;
+      padding: 3.2rem 1.6rem;
+    }
+
+    .title {
+      font-size: 1.6em;
+    }
+
+    .subtitle {
+      font-size: .8em;
+      margin-top: -.8rem;
+    }
+
+    .currency,
+    .percent {
+      color: #999;
+    }
+    </style>
+  </head>
+  <body>
+    <header class="container">
+      <div class="title">
+        GAV
+      </div>
+      <div class="subtitle">
+        <em>genomsnittligt anskaffningsvärde</em>
+      </div>
+    </header>
+    <main>
+      <div class="container">
+        <span>Om du köpt <input class="reactive" type="number" id="a" value="0"> delar för <input class="reactive" type="number" id="b" value="0"> kr styck,</span>
+        <br><span>sen köper <input class="reactive" type="number" id="c" value="0"> till för <input class="reactive" type="number" id="d" value="0"> kr styck</span>
+        <br><span>(och betalar en avgift på <input class="reactive" type="number" id="e" value="0"></span> <input class="reactive" type="radio" name="switch" id="currency" value="currency"><span class="currency">kr</span> <input class="reactive" type="radio" name="switch" id="percent" value="percent"><span class="percent">%</span>)
+        <br><span>är ditt genomsnittliga anskaffningsvärde <span class="gav">___</span>kr.</span>
+      </div>
+      <div class="container">
+        Du kommer alltså ha <span id="units">___</span> andelar och ett gav på <span class="gav">___</span>kr.
+      </div>
+      <div class="container">
+        Avgiftsinformation: <a href="https://www.avanza.se/konton-lan-prislista/prislista/handel-sverige.html">Avanza</a>, <a href="https://www.nordnet.se/tjanster/prislista/oversikt.html">Nordnet</a>, ...
+      </div>
+    </main>
+    <script>
+      function calculate() {
+        let gav = 0;
+
+        const a = Number(document.getElementById("a").value);
+        const b = Number(document.getElementById("b").value);
+        const c = Number(document.getElementById("c").value);
+        const d = Number(document.getElementById("d").value);
+        const e = Number(document.getElementById("e").value);
+
+        if (document.getElementById("currency").checked) {
+          document.querySelector(".currency").style.color = "#222";
+          document.querySelector(".percent").style.color = "#888";
+
+          gav = ( a * b + c * d + e ) / ( a + c );
+        }
+
+        if (document.getElementById("percent").checked) {
+          document.querySelector(".currency").style.color = "#888";
+          document.querySelector(".percent").style.color = "#222";
+
+          gav = ( a * b + c * d + ( c * d * ( e / 100 ) ) ) / ( a + c );
+        }
+
+        if (isNaN(gav)) return;
+
+        document.querySelectorAll(".gav").forEach(e => e.innerHTML = gav.toFixed(2));
+        document.querySelectorAll("#units").forEach(e => e.innerHTML = a + c);
+      }
+
+      document.querySelectorAll(".reactive").forEach(e => e.addEventListener("change", calculate))
+    </script>
+  </body>
+</html>
