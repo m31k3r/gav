@@ -22,7 +22,7 @@
       font-family: Courier, monospace;
       font-size: 1.6rem;
       font-weight: 300;
-      line-height: 1.6;
+      line-height: 2.4;
       text-align: center;
     }
 
@@ -108,8 +108,8 @@
 
         if (isNaN(gav)) return;
 
-        document.querySelectorAll(".gav").forEach(e => e.innerHTML = gav.toFixed(2));
-        document.querySelectorAll("#units").forEach(e => e.innerHTML = a + c);
+        document.querySelectorAll(".gav").forEach(e => e.innerText = gav.toFixed(2));
+        document.querySelectorAll("#units").forEach(e => e.innerText = a + c);
       }
 
       document.querySelectorAll(".reactive").forEach(e => e.addEventListener("change", calculate))
