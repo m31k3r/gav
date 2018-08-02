@@ -70,13 +70,13 @@
     </header>
     <main>
       <div class="container">
-        <span>Om du köpt <input class="reactive" type="number" id="a" value="0"> delar för <input class="reactive" type="number" id="b" value="0"> kr styck,</span>
-        <br><span>sen köper <input class="reactive" type="number" id="c" value="0"> till för <input class="reactive" type="number" id="d" value="0"> kr styck</span>
-        <br><span>(och betalar en avgift på <input class="reactive" type="number" id="e" value="0"></span> <input class="reactive" type="radio" name="switch" id="currency" value="currency"><span class="currency">kr</span> <input class="reactive" type="radio" name="switch" id="percent" value="percent"><span class="percent">%</span>)
-        <br><span>är ditt genomsnittliga anskaffningsvärde <span class="gav">___</span>kr.</span>
+        <span>Om du köpt <input class="reactive" type="number" id="a" value="0"> delar för <input class="reactive" type="number" id="b" value="0"> <span title="valutaexempel">kr</span> styck,</span>
+        <br><span>sen köper <input class="reactive" type="number" id="c" value="0"> till för <input class="reactive" type="number" id="d" value="0"> <span title="valutaexempel">kr</span> styck</span>
+        <br><span>(och betalar en avgift på <input class="reactive" type="number" id="e" value="0"></span> <input class="reactive" type="radio" name="switch" id="currency" value="currency"><span class="currency" title="valutaexempel">kr</span> <input class="reactive" type="radio" name="switch" id="percent" value="percent"><span class="percent">%</span>)
+        <br><span>är ditt genomsnittliga anskaffningsvärde <span class="gav">___</span><span title="valutaexempel">kr</span>.</span>
       </div>
       <div class="container">
-        Du kommer alltså ha <span id="units">___</span> andelar och ett gav på <span class="gav">___</span>kr.
+        Du kommer alltså ha <span id="units">___</span> andelar och ett gav på <span class="gav">___</span><span title="valutaexempel">kr</span>.
       </div>
       <div class="container">
         Avgiftsinformation: <a href="https://www.avanza.se/konton-lan-prislista/prislista/handel-sverige.html">Avanza</a>, <a href="https://www.nordnet.se/tjanster/prislista/oversikt.html">Nordnet</a>, ...
